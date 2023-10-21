@@ -84,7 +84,7 @@ cluster}
 \section{Introduction}
 
 % General Genome rearrangement analysis. why what? 
-During evolution the gene content and also the arrangement of the genes within the genomes of species 
+During evolution the gene content as well as the arrangement of the genes within the genomes of species 
 have been modified by various kinds of mutations. 
 A genome consists of a set of chromosomes and each chromosome contains a set of genes. A chromosome represents 
 a linear or circular string of DNA where the genes are located. Each gene of a chromosome has an orientation 
@@ -92,17 +92,22 @@ depending on which of the two strands of the DNA it is located.
 Mutations that change the arrangement of the genes on the
 chromosome are called rearrangement mutations (or rearrangements). Examples are inversions that reverse the order and orientation 
 of a subsequence of genes on a chromosome and transpositions 
-which move a subsequence of genes from one chromosome to another location on the same chromosome or to another chromosome.
+which move a subsequence of genes from one chromosome to another location on the same or another chromosome.
 Other examples are fissions which split a chromosome into two chromosomes and fusions which merge two chromosomes to form a 
-single chromosome. In addition to such rearrangement mutations which do not change the gene content of a genome there exist also 
+single chromosome. In addition to such rearrangement mutations which do not change the gene content of a genome, there exist also 
 rearrangements that change the gene content of a genome. However,
 the latter type of rearrangements are not considered in this chapter.
 
 Gene order analysis aims to explain the differences of the gene arrangement (and gene content) between the genomes of extant species 
 and to reconstruct their phylogenetic evolution. The most common approach for
 gene order analysis is maximum parsimony. This approach tries to explain the differences within a set of genomes by the minimum
-possible number of changes. For example, on might ask for a shortest sequence of (allowed) rearrangement mutations that transforms one given genome into another given genome. This problem is called the sorting problem. The corresponding problem that asks only for the smallest number of such mutations is called distance problem. 
-Such distance information between genomes of species can be used, e.g., to reconstruct the phylogenetic relationships between the species, 
+possible number of changes. For example, on might ask for a shortest sequence of
+(allowed) rearrangement mutations that transforms one given genome into another
+given genome. This problem is called the sorting problem. The corresponding
+problem that asks only for the smallest number of such mutations is called
+distance problem. 
+Such distance information between genomes of species can be used, e.g., to
+reconstruct the phylogenetic relationships between the species, 
 e.g.,~\cite{Wang_2006}.
 
 %The thereby computed distances can be used for standard distance based
@@ -133,14 +138,14 @@ These models are based on two operations: i) to cut a chromosome into fragments 
 The differences between the models are the number of cut points of an operation and the different ways how the fragments can be rejoined. 
 Thereby, most of the (classical) rearrangement operations are directly covered
 and a few others, e.g., transpositions, can be emulated by a combination of such cut and join operations. One focus is to sketch the 
-border between easy problems, i.e., problems that are polynomial time solvable, and difficult problems, i.e., problems that are NP-hard.
+border between easy problems, i.e., problems that are polynomial time solvable and difficult problems, i.e., problems that are NP-hard.
  
 % Line of research: constraints
 The second line of research tries to identify biologically motivated constraints 
 on the applicability of gene rearrangement mutations. One particular important
 type of constraints are conserved gene clusters, i.e., subsets of the genes that are observed in close proximity on all given genomes. 
 Such gene clusters might form due to functional constraints or evolutionary inertia. The idea is to consider such
-conserved gene clusters in the reconstructions, i.e., no genome rearrangement is allowed that breaks a gene cluster. 
+conserved gene clusters in the reconstructions, i.e., genome rearrangement that break gene clusters are forbidden. 
 Even if a rearrangement problem might become or remain NP-hard with such additional restrictions, e.g., the preserving 
 inversion sorting problem~\cite{Figeac_2004}, the search space becomes more structured such that many problem instances 
 can be solved efficiently~\cite{Berard_2007,Bernt_2009,Bernt_2007}.
@@ -268,7 +273,7 @@ oriented sequence of DNA. In this chapter we consider
 only the case that genes within a genome do not intersect. If not stated otherwise, it is assumed that a gene 
 occurs at most once in a genome. The set of genes of a genome $\alpha$ is denoted by $\mathcal{G}(\alpha)$.
 A gene $g$ can be represented by its \emph{extremities}: the \emph{tail}
-$g^t$, and the \emph{head} $g^h$, i.e., the 5' and 3' end of the gene. A linear (resp. circular) 
+$g^t$ and the \emph{head} $g^h$, i.e., the 5' and 3' end of the gene. A linear (resp. circular) 
 chromosome can be represented by the linear (resp. circular) sequence of the extremities of its genes. 
 % The set of all extremities of the genes of a genome $G$ is denoted by 
 % $\mathcal{E}(G)$, i.e., $\mathcal{E}(G)= \{ x^h,x^t: x \in \mathcal{G}(G)\}$.
@@ -298,7 +303,7 @@ all extremities of the genes, i.e., $\mathcal{E}(\alpha)= \{
 g^h,g^t: g \in \mathcal{G}(\alpha)\}$.
 %genome
 A genome $\alpha$ can be characterized by the set of adjacencies of its genes 
-and its telomeres. In that case $\alpha$ denotes this set.
+and its telomeres, for simplicity let $\alpha$ denotes this set.
 %
 Furthermore, $\mathcal{I}(\alpha)$ denoted the set of all adjacencies (without
 the telomeres) of a genome, i.e.,
@@ -347,8 +352,9 @@ If the head of a gene $x$ appears before its tail the gene in the string
 gets a negative sign (represented by $-{x}$), otherwise a positive
 sign is assigned to the gene (a positive sign is omitted).
 The sign represents the (relative) strandedness of the genes. 
-Note that both strings of the two reading directions of a linear
+Both strings of the two reading directions of a linear
 chromosome and also all strings generated from different start points in circular chromosomes are considered to be equivalent.
+Note, that for some applications this assumption might not be useful, e.g. if parts chromosomes with known orientation.
 For unichromosomal genomes with $n$ genes
 this representation is equivalent to a \emph{signed permutation} of length
 $n$. Such a permutation $\pi$ is denoted by
@@ -479,8 +485,8 @@ $d_\mathcal{M}(\alpha,\alpha')$ of events from $\mathcal{M}$ to transform
 $\alpha$ into $\alpha'$. That is,
 $d_\mathcal{M}(\alpha,\alpha')=\min_{S\in\mathcal{S}_\mathcal{M}(\alpha,\alpha')}|S|$.
 To find a corresponding reconstruction, i.e., a corresponding scenario that transforms one genome into 
-the other is called \emph{sorting problem}. By relabeling the
-elements of $\alpha$ and $\alpha'$, we can always assume that $\alpha'$ is the identity
+the other is called \emph{sorting problem}. The name is motivated by the fact that, 
+by relabeling the elements of $\alpha$ and $\alpha'$, we can always assume that $\alpha'$ is the identity
 permutation $\iota$. 
 %
 For a rearrangement model $\mathcal{M}$ that includes events which involve a
@@ -1185,7 +1191,7 @@ definition the strong intervals of $\Pi$ form a hierarchy which is captured by t
 \emph{strong interval tree} (SIT). The SIT of $\Pi$ with respect to $\lambda$, denoted by ${T}^{\lambda}(\Pi)$, is an ordered tree where each vertex represents a strong common interval of $\Pi$ and the edges represent the minimum inclusion relation. The order of the children of a vertex in the SIT are without loss of generality given by their order in the reference permutation $\lambda$.
 For every inner vertex $I$ of a SIT with children $I_1,\ldots,I_l$ that are ordered according to the reference permutation $\lambda$ the \emph{quotient permutation} associated with $I$ for $\pi\in \Pi$ is the permutation
 $\pi_I^\lambda$ which satisfies that $\pi^\lambda_I(i)$ precedes
-$\pi^\lambda_I(j)$ if and only if $I_i$ is to left of $I_j$ for $i\neq j$.
+$\pi^\lambda_I(j)$ if and only if $I_i$ is to left of $I_j$ in $\pi$, for $i\neq j$.
 A quotient permutation is called \emph{linear increasing} if it is equal to
 $\iota$, \emph{linear decreasing} if it is $(l\ (l-1)\ldots 1)$, and \emph{prime} otherwise. 
 A vertex $I$ of a SIT is called \emph{linear} if all $k$ quotient
@@ -1330,7 +1336,7 @@ of children of a prime vertex \cite{Berard_2007}. Thus, linear vertices can
 only be reversed as a whole whereas the children of prime vertices can be freely rearranged. With respect to the SIT the problem of sorting by preserving inversions 
 is to apply rearrangements such that all quotient permutations are transformed 
 into the identity permutation, i.e., the vertices become linear increasing. 
-Hence, if a vertex $I$ of ${T}^\iota(\pi)$ has a different sign than its
+Hence, if a the sign of vertex $I$ of ${T}^\iota(\pi)$ is different to the sign of its
 parent vertex, it holds that the inversion defined by $I$ is always part of any
 optimal sorting scenario~\cite{Berard_2007} (Lemma 2), i.e., 
 the inversions that correspond to vertices with a sign different to the one of their parent define a parsimonious scenario~\cite{Berard_2007} (Theorem 2).
