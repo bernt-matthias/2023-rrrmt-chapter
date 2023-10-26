@@ -328,6 +328,11 @@ circular connected components in the genome graph.
 \Cref{fig:genome_graph} illustrates an example of a genome graph.
 %
 
+A \emph{weighted genome graph} $wGG$ is a genome graph that has a nonnegative integer
+weight for each edge that connects two extremities $x$ and $y$ if and only if either
+$\{x, y\}$ is an adjacency or one of $x$, $y$ is a telomere. The weight $w(\alpha)$ of a
+genome $\alpha$ is the sum of the weights of all edges of $wGG(\alpha)$.  
+
 \begin{figure}
 	\centering
 	\includegraphics[width=.65\textwidth]{figures/genome_graph_example.pdf}
@@ -1152,7 +1157,81 @@ rearrangement distance. To the best of our knowledge no additional polynomial ti
 the median problem and the small/large parsimony problem.
 
 
+\section{Rearrangement Models with Intergenic Regions}
 
+% When intergenic regions are considered the weight of an edge equals to the size
+% of the intergenic region between genes $x$ and $y$. The weight of a genome $w(\alpha)$
+% is then the total size if the intergenic regions of $\alpha$.
+
+This section reviews results that incorporate the sizes of intergenic regions
+into the models for rearrangement analysis. In recent years researchers have
+argued that the sizes of intergenic regions can be relevant information for
+rearrangement analysis in order to improve phylogenetic distance estimation.
+
+To incorporate the sizes of the intergenic regions into the rearrangement models,
+weighted genome graphs can be defined where each edge $\{p,q\}$ has a weight if
+$p$, $q$ are extremities of neighboring genes or $q=\circ$ and $\{p,\circ\}$ is a
+telomere. The weight of an edge equals the size of the corresponding intergenic
+region, i.e., the intergenic region between the two neighboring genes,
+respectively the size of the intergenic region between the gene and the
+telomere. The weight $w(\alpha)$ of a genome $\alpha$ is then the sum of the
+weights of all edges of the genome graph of $\alpha$, i.e., the total size of all
+intergenic regions of $\alpha$. Then, weighted versions of the genome
+rearrangement problems can be defined. A weighted single-cut or join model is a
+single-cut or join model where the weight of the adjacency that is broken by a
+cut equals the sum of the weights of the two telomeres that are created and the
+sum of the weights of the adjacency that is formed by a join equals the sum of
+the weights of the two telomeres that are connected. Weighted versions of
+single-cut and join models or multi-cut and join models are defined analogously.
+
+The computational complexity and approximation-algorithms are known for various
+weighted rearrangement problems that consider the size of intergenic regions.
+Sorting with weighted reversals for unsigned permutations~\cite{brito2020sorting} and for signed
+permutations \cite{oliveira2020sorting} is NP-hard. The former problem has a 4-approximation algorithm
+\cite{brito2020sorting} and the latter problem has a 2-approximation algorithm \cite{oliveira2020sorting}. Sorting with
+weighted reversals and weighted transpositions problem is NP-hard for unsigned
+and signed permutations \cite{oliveira2021sorting}. The former problem has a 4-approximation algorithm
+\cite{dias2019block} and the latter problem has a 3-approximation algorithm \cite{oliveira2021sorting}. Sorting with
+weighted transpositions for unsigned permutations is NP-hard \cite{oliveira20203} (Note, that
+already the unweighted version of this problem is NP-hard~\cite{Bulteau_2012}) and has
+3.5-approximation algorithms~\cite{oliveira20203}. The Block-Interchange is a rearrangement event
+that swaps the position of two segments (not necessarily consecutive) of the
+genome. The sorting by intergenic block-interchange problem has a
+2-approximation algorithm \cite{dias2019block} and its complexity is unknown.
+
+A weighted version of the DCJ distance problem was studied in~\cite{fertin2017algorithms} where a
+weighted DCJ operation was defined as a DCJ operation which changes the weights
+of the edges such that the sum of the weights of the two cutted edges equals the
+weights of the two joined edges and the weights of all other edges do not
+change.  It was shown that the wDCJ distance problem is strongly NP-hard and has
+a $4/3$-approximation algorithm.
+
+There exist mutations that change the size of intergenic regions but do not
+change the order of the genes. To consider such mutations within the
+rearrangement models an $i$-indel operation is defined as an operation that
+changes the size of an intergenic region. The weight of an i-indel operation is
+the corresponding amount of size change. The sorting problem for the wDCJ model
+with i-indel operations (i.e., to find a shortest wDCJ scenario with minimum
+total weight of the i-indel operations) can be solved in time $O(n\log n)$ \cite{bulteau2016genome}.
+Several approximation algorithms have been designed for the problem of sorting
+unsigned permutations with $i$-indels in \cite{alexandrino2021incorporating}: i) 4-approximation algorithm for
+sorting with $i$-indels and weighted reversals has a, ii) a 4.5-approximation
+algorithm for sorting with $i$-indels and weighted transpositions, and iii) a
+6-approximation algorithm for sorting with $i$-indels, weighted reversals, and
+weighted transpositions. For signed permutations the latter problem has a
+3-approximation algorithm \cite{alexandrino2021reversal}.
+
+Since also the gene order rearrangement operations might change the size of the
+intergenic regions corresponding extended gene order rearrangement operation
+have been studied. Transpositions that might remove a part of an intergenic
+region (i.e., a part of the genome that does not contain a gene) to include it
+into another intergenic region has been considered in \cite{oliveira2021sorting,dias2019block}. It was shown that
+for such generalized transpositions improved approximation algorithms exist for
+the following cases: i) a 2.5-approximation algorithm for sorting unsigned
+permutation with (generalized) weighted transpositions~\cite{oliveira2021sorting} and ii) sorting with
+(generalized) weighted transpositions for signed permutations and unsigned
+permutations has a 2.5-approximation algorithm \cite{oliveira2021sorting}, respectively 3-approximation
+algorithm \cite{dias2019block}.
 
 \section{Preserving Genome Rearrangement Models}
 \label{sec:preserving_models}
