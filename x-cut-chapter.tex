@@ -612,6 +612,8 @@ inversions ($\m{WINV}$).}
     reconstruction under  $\m{WINV}\cup\m{TR}$\\
     \texttt{revDis} & \cite{Bader_2008,PHYLO}\tnote{b} & DP
     under $\m{INV}$ \\
+		\texttt{SPP-DJC} & \cite{SPP-DJC} & DP under
+    $\m{DCJ}\cup\m{IND}$\\
     \texttt{weightedbb} & \cite{Bader_2008,PHYLO}\tnote{b} & branch and
     bound algorithm for DP under $\m{WINV}\cup\m{TR}$\\
     \hline
@@ -1063,8 +1065,7 @@ For the median problem exact algorithms~\cite{Xu_2008,Zhang_2009} and also heuri
 presented in the literature. 
 Based on the heuristic median solver an algorithm for the small phylogeny problem has been developed in~\cite{Adam_2008}.
 Examples of software tools which can be used to solve the small parsimony
-problem under $\m{DCJ}$ are \texttt{MGRA} and \texttt{PATHGROUPS}, see
-\Cref{table:tools}.
+problem are \texttt{MGRA} and \texttt{PATHGROUPS} under $\m{DCJ}$ and \texttt{SPP-DJC} under $\m{DCJ}\cup\m{IND}$, see \Cref{table:tools}.
 
 \paragraph{Applications}
 In \cite{Bergeron_2010} the distance problems under $\m{SCAJ}$ and
